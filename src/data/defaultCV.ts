@@ -179,8 +179,8 @@ export const defaultCVData: CVData = {
       degree: "B.S. in Software Engineering",
       institution: "Universidad Peruana de Ciencias Aplicadas",
       location: "Lima, Peru",
-      startDate: "2014-01",
-      endDate: "2018-12",
+      startDate: "2020-03",
+      endDate: "2024-11",
       gpa: "",
       description: "Bachelor's degree in Software Engineering",
       coursework: [
@@ -554,7 +554,7 @@ export const defaultCVData: CVData = {
       startDate: "2024-08",
       endDate: "2025-06",
       url: "https://monyx.vercel.app",
-      github: "",
+      github: "https://github.com/xMathyu/cv-builder",
       image: "",
       highlights: [
         "Implemented AI-powered expense categorization using machine learning algorithms",
@@ -581,7 +581,7 @@ export const defaultCVData: CVData = {
       ],
       startDate: "2025-01",
       endDate: "2025-06",
-      url: "https://cv-builder-dev.vercel.app",
+      url: "https://cv-builder-taupe-three.vercel.app",
       github: "https://github.com/xMathyu/cv-builder",
       image: "",
       highlights: [
