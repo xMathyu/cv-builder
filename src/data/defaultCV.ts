@@ -32,6 +32,38 @@ export const defaultCVData: CVData = {
   },
   experiences: [
     {
+      id: "exp-0",
+      position: "Data Scientist Expert / AI Tech Lead",
+      company: "Entel",
+      location: "Hybrid",
+      startDate: "2024-11",
+      endDate: "",
+      isCurrentJob: true,
+      description:
+        "Entel is one of the largest telecommunications companies in Chile and Peru. As AI Tech Lead of SinfonIA, I lead the development of an AI-powered platform for transcribing hundreds of thousands of daily audio calls using Whisper X, silence detection, and generating insights to help agents improve performance and reduce operational costs by 75%.",
+      companyLogo: "/logos/entel.png",
+      achievements: [
+        "Leading the AI team as Tech Lead for SinfonIA, a voice-to-text transcription platform processing hundreds of thousands of audio files daily",
+        "Implemented Whisper X for high-accuracy speech-to-text transcription with silence detection capabilities",
+        "Developed AI-driven insights engine to analyze agent performance and provide actionable recommendations",
+        "Achieved 75% cost reduction compared to previous vendor solution through in-house AI implementation",
+        "Architected scalable serverless infrastructure using AWS Lambda for processing massive audio workloads",
+      ],
+      technologies: [
+        "Python",
+        "FastAPI",
+        "Whisper X",
+        "AWS",
+        "Lambda",
+        "OpenAI",
+        "Next.js",
+        "React",
+        "Machine Learning",
+        "Speech-to-Text",
+        "NLP",
+      ],
+    },
+    {
       id: "exp-1",
       position: "Technical Lead",
       company: "309 Technology - USA",
