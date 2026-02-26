@@ -47,7 +47,7 @@ export const defaultCVData: CVData = {
         "Implemented Whisper X for high-accuracy speech-to-text transcription with silence detection capabilities",
         "Developed AI-driven insights engine to analyze agent performance and provide actionable recommendations",
         "Achieved 75% cost reduction compared to previous vendor solution through in-house AI implementation",
-        "Architected scalable serverless infrastructure using AWS Lambda for processing massive audio workloads",
+        "Architected scalable serverless infrastructure using AWS Lambda and SQS for processing and queuing massive audio workloads",
       ],
       technologies: [
         "Python",
@@ -55,6 +55,7 @@ export const defaultCVData: CVData = {
         "Whisper X",
         "AWS",
         "Lambda",
+        "SQS",
         "OpenAI",
         "Next.js",
         "React",
@@ -487,6 +488,13 @@ export const defaultCVData: CVData = {
       level: "intermediate",
       category: "cloud",
       icon: "gcp",
+    },
+    {
+      id: "skill-45",
+      name: "SQS",
+      level: "intermediate",
+      category: "cloud",
+      icon: "aws",
     },
 
     // DevOps
