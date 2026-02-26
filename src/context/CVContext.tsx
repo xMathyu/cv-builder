@@ -11,6 +11,8 @@ import {
   Language,
 } from "@/types/cv";
 import { defaultCVData } from "@/data/defaultCV";
+import { spanishCVData } from "@/data/defaultCVes";
+import { useUI } from "@/context/UIContext";
 
 type CVAction =
   | { type: "LOAD_CV"; payload: CVData }
@@ -75,7 +77,7 @@ const cvReducer = (state: CVData, action: CVAction): CVData => {
         experiences: state.experiences.map((exp) =>
           exp.id === action.payload.id
             ? { ...exp, ...action.payload.data }
-            : exp
+            : exp,
         ),
         updatedAt: new Date().toISOString(),
       };
@@ -84,7 +86,7 @@ const cvReducer = (state: CVData, action: CVAction): CVData => {
       return {
         ...state,
         experiences: state.experiences.filter(
-          (exp) => exp.id !== action.payload
+          (exp) => exp.id !== action.payload,
         ),
         updatedAt: new Date().toISOString(),
       };
@@ -102,7 +104,7 @@ const cvReducer = (state: CVData, action: CVAction): CVData => {
         education: state.education.map((edu) =>
           edu.id === action.payload.id
             ? { ...edu, ...action.payload.data }
-            : edu
+            : edu,
         ),
         updatedAt: new Date().toISOString(),
       };
@@ -127,7 +129,7 @@ const cvReducer = (state: CVData, action: CVAction): CVData => {
         skills: state.skills.map((skill) =>
           skill.id === action.payload.id
             ? { ...skill, ...action.payload.data }
-            : skill
+            : skill,
         ),
         updatedAt: new Date().toISOString(),
       };
@@ -152,7 +154,7 @@ const cvReducer = (state: CVData, action: CVAction): CVData => {
         projects: state.projects.map((project) =>
           project.id === action.payload.id
             ? { ...project, ...action.payload.data }
-            : project
+            : project,
         ),
         updatedAt: new Date().toISOString(),
       };
@@ -161,7 +163,7 @@ const cvReducer = (state: CVData, action: CVAction): CVData => {
       return {
         ...state,
         projects: state.projects.filter(
-          (project) => project.id !== action.payload
+          (project) => project.id !== action.payload,
         ),
         updatedAt: new Date().toISOString(),
       };
@@ -179,7 +181,7 @@ const cvReducer = (state: CVData, action: CVAction): CVData => {
         certifications: state.certifications.map((cert) =>
           cert.id === action.payload.id
             ? { ...cert, ...action.payload.data }
-            : cert
+            : cert,
         ),
         updatedAt: new Date().toISOString(),
       };
@@ -188,7 +190,7 @@ const cvReducer = (state: CVData, action: CVAction): CVData => {
       return {
         ...state,
         certifications: state.certifications.filter(
-          (cert) => cert.id !== action.payload
+          (cert) => cert.id !== action.payload,
         ),
         updatedAt: new Date().toISOString(),
       };
@@ -206,7 +208,7 @@ const cvReducer = (state: CVData, action: CVAction): CVData => {
         languages: state.languages.map((lang) =>
           lang.id === action.payload.id
             ? { ...lang, ...action.payload.data }
-            : lang
+            : lang,
         ),
         updatedAt: new Date().toISOString(),
       };
@@ -256,7 +258,22 @@ const STORAGE_KEY = "cv-builder-data";
 export const CVProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [cvData, dispatch] = useReducer(cvReducer, defaultCVData);
+  const { language } = useUI();
+
+  // Initialize reducer with the correct language data from localStorage synchronously
+  const [cvData, dispatch] = useReducer(cvReducer, undefined, () => {
+    const savedLang =
+      typeof window !== "undefined"
+        ? localStorage.getItem("cv-language")
+        : null;
+    return savedLang === "es" ? spanishCVData : defaultCVData;
+  });
+
+  // Swap data when language changes at runtime
+  useEffect(() => {
+    const data = language === "es" ? spanishCVData : defaultCVData;
+    dispatch({ type: "LOAD_CV", payload: data });
+  }, [language]);
 
   const saveToLocalStorage = () => {
     try {
@@ -286,7 +303,7 @@ export const CVProvider: React.FC<{ children: React.ReactNode }> = ({
     link.href = url;
     link.download = `${cvData.personalInfo.fullName.replace(
       /\s+/g,
-      "_"
+      "_",
     )}_CV.json`;
     document.body.appendChild(link);
     link.click();
@@ -304,19 +321,11 @@ export const CVProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  // Auto-save to localStorage when data changes
-  useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(cvData));
-    } catch (error) {
-      console.error("Failed to save CV data to localStorage:", error);
-    }
-  }, [cvData]);
+  // Auto-save to localStorage is intentionally disabled to avoid
+  // overwriting language-specific data with stale saved state.
 
-  // Load from localStorage on mount
-  useEffect(() => {
-    loadFromLocalStorage();
-  }, []);
+  // Load from localStorage on mount is also disabled; language preference
+  // (stored under 'cv-language') controls which dataset is displayed.
 
   const value: CVContextType = {
     cvData,

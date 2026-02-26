@@ -1,6 +1,6 @@
 import { CVData, CVTheme } from "@/types/cv";
 
-export const defaultTheme: CVTheme = {
+export const defaultThemeEs: CVTheme = {
   id: "professional-blue",
   name: "Professional Blue",
   colors: {
@@ -14,40 +14,40 @@ export const defaultTheme: CVTheme = {
   layout: "sidebar",
 };
 
-export const defaultCVData: CVData = {
-  id: "mathyu-cv-2025",
+export const spanishCVData: CVData = {
+  id: "mathyu-cv-2025-es",
   personalInfo: {
     id: "personal-1",
     fullName: "Mathyu Cardozo",
-    title: "Tech Lead / Sr Full Stack Developer",
+    title: "Tech Lead / Desarrollador Full Stack Sr",
     email: "xmathyu@gmail.com",
     phone: "+51 924-283-802",
-    location: "Peru",
+    location: "Perú",
     linkedin: "mathyu-cardozo",
     github: "xMathyu",
     website: "https://mathyu-portfolio.vercel.app/",
     profileImage: "/mathyu-profile.jpg",
     summary:
-      "Sr Fullstack Developer with 6 years of experience, the last 3 years working remotely for US companies with technologies such as Next.js, NestJS, Java Spring Boot, Azure and DevOps. I have experience working in startups for different companies in sectors such as Retail, Fintech and SaaS Providers. I specialize in developing complex solutions, mainly for telemetries in the financial, retail automation, CI/CD and quality testing. Committed to continuous improvement and building efficient and scalable software.",
+      "Desarrollador Fullstack Sr con 6 años de experiencia, los últimos 3 años trabajando de forma remota para empresas de EE.UU. con tecnologías como Next.js, NestJS, Java Spring Boot, Azure y DevOps. Tengo experiencia trabajando en startups en sectores como Retail, Fintech y Proveedores SaaS. Me especializo en el desarrollo de soluciones complejas, principalmente en telemetría financiera, automatización retail, CI/CD y pruebas de calidad. Comprometido con la mejora continua y la construcción de software eficiente y escalable.",
   },
   experiences: [
     {
       id: "exp-0",
-      position: "Data Scientist Expert / AI Tech Lead",
+      position: "Experto en Ciencia de Datos / AI Tech Lead",
       company: "Entel",
-      location: "Hybrid",
+      location: "Híbrido",
       startDate: "2025-11",
       endDate: "",
       isCurrentJob: true,
       description:
-        "Entel is one of the largest telecommunications companies in Chile and Peru. As AI Tech Lead of SinfonIA, I lead the development of an AI-powered platform for transcribing hundreds of thousands of daily audio calls using Whisper X, silence detection, and generating insights to help agents improve performance and reduce operational costs by 75%.",
+        "Entel es una de las mayores empresas de telecomunicaciones en Chile y Perú. Como AI Tech Lead de SinfonIA, lidero el desarrollo de una plataforma impulsada por IA para transcribir cientos de miles de llamadas de audio diarias utilizando Whisper X, detección de silencio, y generando insights para ayudar a los agentes a mejorar su rendimiento y reducir costos operativos en un 75%.",
       companyLogo: "/logos/entel.png",
       achievements: [
-        "Leading the AI team as Tech Lead for SinfonIA, a voice-to-text transcription platform processing hundreds of thousands of audio files daily",
-        "Implemented Whisper X for high-accuracy speech-to-text transcription with silence detection capabilities",
-        "Developed AI-driven insights engine to analyze agent performance and provide actionable recommendations",
-        "Achieved 75% cost reduction compared to previous vendor solution through in-house AI implementation",
-        "Architected scalable serverless infrastructure using AWS Lambda and SQS for processing and queuing massive audio workloads",
+        "Liderando el equipo de IA como Tech Lead de SinfonIA, una plataforma de transcripción de voz a texto que procesa cientos de miles de archivos de audio diariamente",
+        "Implementé Whisper X para transcripción de voz a texto de alta precisión con capacidades de detección de silencio",
+        "Desarrollé un motor de insights impulsado por IA para analizar el rendimiento de los agentes y proporcionar recomendaciones accionables",
+        "Logré una reducción de costos del 75% en comparación con la solución del proveedor anterior mediante implementación de IA propia",
+        "Diseñé infraestructura serverless escalable usando AWS Lambda y SQS para procesar y encolar cargas masivas de audio",
       ],
       technologies: [
         "Python",
@@ -66,21 +66,21 @@ export const defaultCVData: CVData = {
     },
     {
       id: "exp-1",
-      position: "Technical Lead",
+      position: "Líder Técnico",
       company: "309 Technology - USA",
-      location: "Hybrid",
+      location: "Híbrido",
       startDate: "2025-04",
       endDate: "2025-11",
       isCurrentJob: false,
       description:
-        "309 Technology is a startup company based in the USA focused on innovative technology solutions and AI-driven applications.",
+        "309 Technology es una empresa startup con sede en EE.UU. enfocada en soluciones tecnológicas innovadoras y aplicaciones impulsadas por IA.",
       companyLogo: "/logos/309-technology.svg",
       achievements: [
-        "Leading the entire development team using agile methodologies such as Scrumban and Jira for project management",
-        "Architecting and developing applications using Next.js, AI integration, Java, and Kotlin with Spring Boot",
-        "Managing cloud infrastructure on AWS and implementing machine learning solutions",
-        "Designing user interfaces and user experience with Figma while coordinating with cross-functional teams",
-        "Establishing development standards and best practices for the engineering team",
+        "Liderando todo el equipo de desarrollo utilizando metodologías ágiles como Scrumban y Jira para la gestión de proyectos",
+        "Diseñando y desarrollando aplicaciones con Next.js, integración de IA, Java y Kotlin con Spring Boot",
+        "Gestionando infraestructura en la nube en AWS e implementando soluciones de machine learning",
+        "Diseñando interfaces de usuario y experiencia de usuario con Figma coordinando con equipos multifuncionales",
+        "Estableciendo estándares de desarrollo y buenas prácticas para el equipo de ingeniería",
       ],
       technologies: [
         "Next.js",
@@ -100,18 +100,18 @@ export const defaultCVData: CVData = {
     },
     {
       id: "exp-2",
-      position: "Sr Software Engineer",
-      company: "Encora (Clients: Interbank, Niubiz, Scotiabank) - Peru",
-      location: "Remote",
+      position: "Ingeniero de Software Sr",
+      company: "Encora (Clientes: Interbank, Niubiz, Scotiabank) - Perú",
+      location: "Remoto",
       startDate: "2023-10",
       endDate: "2025-04",
       isCurrentJob: false,
       description:
-        "Encora is a global technology company that provides innovative software engineering solutions to leading enterprises across various industries.",
+        "Encora es una empresa tecnológica global que provee soluciones innovadoras de ingeniería de software a empresas líderes en diversas industrias.",
       companyLogo: "/logos/encora.png",
       achievements: [
-        "As part of the team, I developed backend applications using Java Spring Boot, implementing reactive programming with WebFlux and RxJava, and ensuring high-performance financial services. I conducted unit testing with JUnit and Mockito, deployed services on Azure and AWS, and monitored applications with New Relic.",
-        "Additionally, I contributed to frontend development with Angular and Next.js and applied DevOps practices using SonarQube, Kiuwan, and CheckStyle. At Scotiabank, I worked with Java 8 and Eclipse, focusing on secure and efficient financial solutions.",
+        "Desarrollé aplicaciones backend con Java Spring Boot, implementando programación reactiva con WebFlux y RxJava, y garantizando servicios financieros de alto rendimiento. Realicé pruebas unitarias con JUnit y Mockito, despliegues en Azure y AWS, y monitoreo de aplicaciones con New Relic.",
+        "Contribuí al desarrollo frontend con Angular y Next.js, y apliqué prácticas DevOps usando SonarQube, Kiuwan y CheckStyle. En Scotiabank, trabajé con Java 8 y Eclipse enfocándome en soluciones financieras seguras y eficientes.",
       ],
       technologies: [
         "Java",
@@ -138,19 +138,19 @@ export const defaultCVData: CVData = {
     },
     {
       id: "exp-3",
-      position: "Sr Software Engineer",
+      position: "Ingeniero de Software Sr",
       company: "Serverli - Florida USA",
-      location: "Remote",
+      location: "Remoto",
       startDate: "2024-06",
       endDate: "2024-12",
       isCurrentJob: false,
       description:
-        "Serverli is a platform for managing and monitoring physical and IoT security systems, integrating video, access control and devices in real time. As a Senior Software Engineer, I led frontend development with Next.js and backend with Nest.js, managing environments in Azure, improving architectures and specializing in IoT security applications.",
+        "Serverli es una plataforma para gestionar y monitorear sistemas de seguridad físicos e IoT, integrando video, control de acceso y dispositivos en tiempo real. Como Ingeniero de Software Senior, lideré el desarrollo frontend con Next.js y backend con Nest.js, gestionando entornos en Azure, mejorando arquitecturas y especializándome en aplicaciones de seguridad IoT.",
       companyLogo: "/logos/serverli.png",
       achievements: [
-        "Led frontend development with Next.js and backend development with Nest.js, focusing on IoT security applications",
-        "Managed environments in Azure, improving system architectures and optimizing deployment processes",
-        "Specialized in developing IoT security solutions integrating video surveillance, access control, and real-time device monitoring",
+        "Lideré el desarrollo frontend con Next.js y el desarrollo backend con Nest.js, enfocándome en aplicaciones de seguridad IoT",
+        "Gestioné entornos en Azure, mejorando las arquitecturas del sistema y optimizando los procesos de despliegue",
+        "Me especialicé en desarrollar soluciones de seguridad IoT integrando vigilancia por video, control de acceso y monitoreo de dispositivos en tiempo real",
       ],
       technologies: [
         "JavaScript",
@@ -167,22 +167,22 @@ export const defaultCVData: CVData = {
     },
     {
       id: "exp-4",
-      position: "Software Engineer",
+      position: "Ingeniero de Software",
       company: "MDP Consulting",
-      location: "Hybrid",
+      location: "Híbrido",
       startDate: "2020-11",
       endDate: "2023-10",
       isCurrentJob: false,
       description:
-        "MDP Consulting is a recognized leader in IT services, offering innovative solutions for clients in Latin America. During my time at the company, I progressed through multiple roles including Backend Technical Leader, AI Developer, Cloud Administrator & DevOps, Scrum Master & Mentor, and Senior Developer, working on diverse projects spanning backend development, AI integration, cloud infrastructure, and team leadership.",
+        "MDP Consulting es un referente reconocido en servicios de TI, ofreciendo soluciones innovadoras para clientes en América Latina. Durante mi tiempo en la empresa, progresé a través de múltiples roles: Líder Técnico Backend, Desarrollador de IA, Administrador Cloud & DevOps, Scrum Master & Mentor, y Desarrollador Senior, trabajando en proyectos diversos que abarcan desarrollo backend, integración de IA, infraestructura cloud y liderazgo de equipos.",
       companyLogo: "/logos/mdp-consulting.png",
       achievements: [
-        "Backend Technical Leader: Led Pacific Client project using Java Spring Boot with Java 11/17, implementing functional and reactive programming patterns",
-        "AI Developer: Developed AI solutions for Reseñan Colombia Client using OpenAI APIs and machine learning technologies",
-        "Cloud Administrator & DevOps: Managed infrastructure automation and deployment pipelines across AWS, Azure, and GCP platforms",
-        "Scrum Master & Mentor: Led MDP bootcamp program, providing technical training and mentoring to junior developers",
-        "Tech Lead: Managed full-stack development projects with Memorandum, a Greek technology company, overseeing both backend and frontend development",
-        "Senior Developer: Delivered high-quality backend solutions with Java Spring Boot and Node.js, and frontend applications with Angular, Ionic, and React",
+        "Líder Técnico Backend: Lideré el proyecto Pacific Client usando Java Spring Boot con Java 11/17, implementando patrones de programación funcional y reactiva",
+        "Desarrollador de IA: Desarrollé soluciones de IA para el cliente Reseñan Colombia usando APIs de OpenAI y tecnologías de machine learning",
+        "Administrador Cloud & DevOps: Gestioné automatización de infraestructura y pipelines de despliegue en plataformas AWS, Azure y GCP",
+        "Scrum Master & Mentor: Lideré el programa de bootcamp de MDP, brindando capacitación técnica y mentoría a desarrolladores junior",
+        "Tech Lead: Gestioné proyectos de desarrollo full-stack con Memorandum, una empresa tecnológica griega, supervisando el desarrollo backend y frontend",
+        "Desarrollador Senior: Entregué soluciones backend de alta calidad con Java Spring Boot y Node.js, y aplicaciones frontend con Angular, Ionic y React",
       ],
       technologies: [
         "Java",
@@ -209,36 +209,36 @@ export const defaultCVData: CVData = {
   education: [
     {
       id: "edu-1",
-      degree: "B.S. in Software Engineering",
+      degree: "Ing. de Software",
       institution: "Universidad Peruana de Ciencias Aplicadas",
-      location: "Lima, Peru",
+      location: "Lima, Perú",
       startDate: "2020-03",
       endDate: "2024-11",
       gpa: "",
-      description: "Bachelor's degree in Software Engineering",
+      description: "Licenciatura en Ingeniería de Software",
       coursework: [
-        "Software Engineering",
-        "Data Structures and Algorithms",
-        "Database Systems",
-        "Software Architecture",
-        "Computer Networks",
-        "Operating Systems",
+        "Ingeniería de Software",
+        "Estructuras de Datos y Algoritmos",
+        "Sistemas de Bases de Datos",
+        "Arquitectura de Software",
+        "Redes de Computadoras",
+        "Sistemas Operativos",
       ],
     },
     {
       id: "edu-2",
-      degree: "Advanced English (ICPNA)",
-      institution: "Language Institute",
-      location: "Lima, Peru",
+      degree: "Inglés Avanzado (ICPNA)",
+      institution: "Instituto de Idiomas",
+      location: "Lima, Perú",
       startDate: "2019-01",
       endDate: "2020-12",
       gpa: "",
-      description: "Advanced English certification program",
+      description: "Programa de certificación de inglés avanzado",
       coursework: [],
     },
   ],
   skills: [
-    // Backend Technologies
+    // Backend
     {
       id: "skill-1",
       name: "Java",
@@ -302,8 +302,7 @@ export const defaultCVData: CVData = {
       category: "backend",
       icon: "python",
     },
-
-    // Frontend Technologies
+    // Frontend
     {
       id: "skill-10",
       name: "Next.js",
@@ -360,8 +359,7 @@ export const defaultCVData: CVData = {
       category: "frontend",
       icon: "sass",
     },
-
-    // Programming Languages
+    // Lenguajes de Programación
     {
       id: "skill-18",
       name: "C#",
@@ -383,8 +381,7 @@ export const defaultCVData: CVData = {
       category: "language",
       icon: "kotlin",
     },
-
-    // Databases
+    // Bases de Datos
     {
       id: "skill-21",
       name: "MySQL",
@@ -413,8 +410,7 @@ export const defaultCVData: CVData = {
       category: "database",
       icon: "redis",
     },
-
-    // Messaging
+    // Mensajería
     {
       id: "skill-25",
       name: "RabbitMQ",
@@ -422,7 +418,6 @@ export const defaultCVData: CVData = {
       category: "tool",
       icon: "rabbitmq",
     },
-
     // Testing
     {
       id: "skill-26",
@@ -466,8 +461,7 @@ export const defaultCVData: CVData = {
       category: "testing",
       icon: "testing",
     },
-
-    // Cloud Platforms
+    // Cloud
     {
       id: "skill-32",
       name: "Azure",
@@ -496,7 +490,6 @@ export const defaultCVData: CVData = {
       category: "cloud",
       icon: "aws",
     },
-
     // DevOps
     {
       id: "skill-35",
@@ -547,8 +540,7 @@ export const defaultCVData: CVData = {
       category: "devops",
       icon: "sonarqube",
     },
-
-    // Design & Tools
+    // Diseño y Herramientas
     {
       id: "skill-42",
       name: "Figma",
@@ -556,8 +548,7 @@ export const defaultCVData: CVData = {
       category: "tool",
       icon: "figma",
     },
-
-    // AI/ML
+    // IA/ML
     {
       id: "skill-43",
       name: "Machine Learning",
@@ -576,9 +567,9 @@ export const defaultCVData: CVData = {
   projects: [
     {
       id: "proj-1",
-      name: "Monyx - Personal Finance App with AI",
+      name: "Monyx - App de Finanzas Personales con IA",
       description:
-        "Developed a comprehensive personal finance application powered by AI that helps users categorize expenses, capture receipts through photo recognition, and receive intelligent financial recommendations for better money management.",
+        "Desarrollé una aplicación integral de finanzas personales impulsada por IA que ayuda a los usuarios a categorizar gastos, capturar recibos mediante reconocimiento fotográfico y recibir recomendaciones financieras inteligentes para una mejor gestión del dinero.",
       technologies: [
         "Next.js",
         "React",
@@ -597,18 +588,18 @@ export const defaultCVData: CVData = {
       github: "https://github.com/xMathyu/cv-builder",
       image: "",
       highlights: [
-        "Implemented AI-powered expense categorization using machine learning algorithms",
-        "Built OCR and computer vision system for automatic receipt scanning and data extraction",
-        "Created intelligent financial advisor with personalized recommendations",
-        "Developed real-time expense tracking and budget management features",
-        "Achieved 95% accuracy in expense categorization and receipt recognition",
+        "Implementé categorización de gastos impulsada por IA usando algoritmos de machine learning",
+        "Construí un sistema de OCR y visión computacional para escaneo automático de recibos y extracción de datos",
+        "Creé un asesor financiero inteligente con recomendaciones personalizadas",
+        "Desarrollé seguimiento de gastos en tiempo real y funciones de gestión de presupuesto",
+        "Logré un 95% de precisión en la categorización de gastos y reconocimiento de recibos",
       ],
     },
     {
       id: "proj-2",
-      name: "CV Builder for Developers",
+      name: "CV Builder para Desarrolladores",
       description:
-        "Created a modern, responsive CV builder specifically designed for software developers, featuring multiple templates, real-time preview, PDF export, and integration with technology icons and professional layouts.",
+        "Creé un constructor de CV moderno y responsivo diseñado específicamente para desarrolladores de software, con múltiples plantillas, vista previa en tiempo real, exportación a PDF e integración con íconos de tecnología y diseños profesionales.",
       technologies: [
         "Next.js",
         "React",
@@ -625,11 +616,11 @@ export const defaultCVData: CVData = {
       github: "https://github.com/xMathyu/cv-builder",
       image: "",
       highlights: [
-        "Built dynamic CV generator with real-time preview and multiple professional templates",
-        "Integrated comprehensive technology icon library for skills visualization",
-        "Implemented PDF export functionality with professional formatting",
-        "Created responsive design optimized for both desktop and mobile devices",
-        "Developed intuitive drag-and-drop interface for easy customization",
+        "Construí un generador de CV dinámico con vista previa en tiempo real y múltiples plantillas profesionales",
+        "Integré una biblioteca completa de íconos de tecnología para visualización de habilidades",
+        "Implementé funcionalidad de exportación a PDF con formato profesional",
+        "Creé un diseño responsivo optimizado para escritorio y dispositivos móviles",
+        "Desarrollé una interfaz intuitiva de arrastrar y soltar para fácil personalización",
       ],
     },
   ],
@@ -654,7 +645,7 @@ export const defaultCVData: CVData = {
     },
     {
       id: "cert-3",
-      name: "Izipay AI Hackathon Winner",
+      name: "Ganador Hackathon IA - Izipay",
       issuer: "Izipay",
       date: "",
       expirationDate: "",
@@ -663,7 +654,7 @@ export const defaultCVData: CVData = {
     },
     {
       id: "cert-4",
-      name: "BCP AI Hackathon Winner",
+      name: "Ganador Hackathon IA - BCP",
       issuer: "Banco de Crédito del Perú",
       date: "",
       expirationDate: "",
@@ -672,11 +663,11 @@ export const defaultCVData: CVData = {
     },
   ],
   languages: [
-    { id: "lang-1", name: "Professional English", proficiency: "professional" },
-    { id: "lang-2", name: "Native Spanish", proficiency: "native" },
-    { id: "lang-3", name: "Basic Portuguese", proficiency: "basic" },
+    { id: "lang-1", name: "Inglés Profesional", proficiency: "professional" },
+    { id: "lang-2", name: "Español Nativo", proficiency: "native" },
+    { id: "lang-3", name: "Portugués Básico", proficiency: "basic" },
   ],
-  theme: defaultTheme,
+  theme: defaultThemeEs,
   sections: {
     showPersonalInfo: true,
     showExperience: true,
@@ -686,6 +677,6 @@ export const defaultCVData: CVData = {
     showCertifications: true,
     showLanguages: true,
   },
-  createdAt: new Date().toISOString(),
-  updatedAt: new Date().toISOString(),
+  createdAt: "2025-01-01T00:00:00.000Z",
+  updatedAt: "2025-01-01T00:00:00.000Z",
 };

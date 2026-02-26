@@ -5,10 +5,8 @@ import Link from "next/link";
 import { CVProvider } from "@/context/CVContext";
 import { UIProvider, useUI } from "@/context/UIContext";
 import CVPreview from "@/components/CVPreview";
-import ExportButton from "@/components/ExportButton";
-import DirectExportButton from "@/components/DirectExportButton";
 import FullscreenCVView from "@/components/FullscreenCVView";
-import { Edit, Eye, Settings, Palette, Maximize, Printer } from "lucide-react";
+import { Edit, Eye, Palette, Maximize, Printer } from "lucide-react";
 
 export default function Home() {
   return (
@@ -22,7 +20,7 @@ export default function Home() {
 }
 
 function MainContent() {
-  const { toggleFullscreen } = useUI();
+  const { toggleFullscreen, language, toggleLanguage } = useUI();
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -37,37 +35,36 @@ function MainContent() {
               </span>
             </div>
 
-            <div className="flex items-center space-x-4">
-              {/* Export Buttons */}
-              <div className="flex items-center space-x-2">
-                <ExportButton />
-                <DirectExportButton />
-              </div>
+            <div className="flex items-center space-x-3">
+              {/* Language Toggle */}
+              <button
+                onClick={toggleLanguage}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors"
+                title={
+                  language === "en" ? "Cambiar a Español" : "Switch to English"
+                }
+              >
+                <span className="text-base leading-none">
+                  {language === "en" ? "🇵🇪" : "🇺🇸"}
+                </span>
+                <span>{language === "en" ? "ES" : "EN"}</span>
+              </button>
 
-              {/* Additional Actions */}
+              {/* Actions */}
               <div className="flex items-center space-x-2">
-                <button className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
-                  <Edit className="w-5 h-5" />
-                </button>
-                <button className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
-                  <Palette className="w-5 h-5" />
-                </button>
-                <button 
+                <button
                   onClick={toggleFullscreen}
                   className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
                   title="View in Fullscreen"
                 >
                   <Maximize className="w-5 h-5" />
                 </button>
-                <button 
-                  onClick={() => window.open('/print', '_blank')}
+                <button
+                  onClick={() => window.open("/print", "_blank")}
                   className="px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors text-sm font-medium"
                   title="Vista de Impresión Tabloid"
                 >
                   📄 Imprimir Tabloid
-                </button>
-                <button className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
-                  <Settings className="w-5 h-5" />
                 </button>
               </div>
             </div>
@@ -126,7 +123,7 @@ function MainContent() {
                     <Palette className="w-4 h-4 inline mr-2" />
                     Change Theme
                   </button>
-                  <button 
+                  <button
                     onClick={toggleFullscreen}
                     className="w-full text-left p-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
                   >
@@ -140,8 +137,8 @@ function MainContent() {
                     <Printer className="w-4 h-4 inline mr-2" />
                     Vista para Imprimir
                   </Link>
-                  <button 
-                    onClick={() => window.open('/print', '_blank')}
+                  <button
+                    onClick={() => window.open("/print", "_blank")}
                     className="w-full text-left p-2 text-sm text-green-600 hover:bg-green-50 rounded-lg transition-colors font-medium"
                   >
                     📄 Vista de Impresión Tabloid
@@ -165,8 +162,7 @@ function MainContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center">
             <p className="text-sm text-gray-600">
-              CV Builder App - Built with Next.js, TypeScript, and Tailwind
-              CSS
+              CV Builder App - Built with Next.js, TypeScript, and Tailwind CSS
             </p>
             <p className="text-xs text-gray-500 mt-1">
               Export to PDF, customize themes, and create professional CVs
