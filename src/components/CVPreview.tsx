@@ -40,16 +40,37 @@ const CVPreview: React.FC = () => {
     return acc;
   }, {} as Record<string, typeof skills>);
 
+  // Toda categoría presente en los datos necesita etiqueta: el render hace
+  // categoryLabels[category] y una categoría sin entrada aquí sale con el
+  // <h3> vacío (le pasaba a "devops": 7 skills bajo un título en blanco).
   const categoryLabels = {
     language: "Programming Languages",
     frontend: "Frontend",
     backend: "Backend",
-    cloud: "Cloud & DevOps",
+    cloud: "Cloud",
+    devops: "DevOps",
+    security: "Security & DevSecOps",
+    ai: "AI & Machine Learning",
     database: "Databases",
     testing: "Testing",
     tool: "Tools",
     soft: "Soft Skills",
   };
+
+  // Orden de presentación explícito. Antes salía el de inserción en los datos,
+  // que dejaba seguridad al final; va primero porque es el puesto objetivo.
+  const categoryOrder = [
+    "security",
+    "ai",
+    "language",
+    "backend",
+    "frontend",
+    "cloud",
+    "devops",
+    "database",
+    "testing",
+    "tool",
+  ] as const;
 
   const proficiencyLabels = {
     basic: "Basic",
@@ -187,9 +208,10 @@ const CVPreview: React.FC = () => {
                 Technical Skills
               </h2>
               <div className="space-y-4">
-                {Object.entries(skillsByCategory).map(
-                  ([category, categorySkills]) => {
-                    if (category === "soft") return null; // Show soft skills separately
+                {categoryOrder.map(
+                  (category) => {
+                    const categorySkills = skillsByCategory[category];
+                    if (!categorySkills?.length) return null;
 
                     return (
                       <div key={category}>
@@ -205,12 +227,14 @@ const CVPreview: React.FC = () => {
                             return (
                               <span
                                 key={skill.id}
-                                className="bg-blue-700 px-2 py-1 rounded text-xs flex items-center"
+                                // Fondo claro: los logos con color de marca no
+                                // se leen sobre el azul oscuro del sidebar.
+                                className="bg-white text-gray-800 px-2 py-1 rounded text-xs flex items-center"
                               >
                                 <TechIcon
                                   technology={skill.name}
                                   size={12}
-                                  className="w-3 h-3 mr-1 text-white"
+                                  className="w-3 h-3 mr-1"
                                 />
                                 {skill.name}
                               </span>

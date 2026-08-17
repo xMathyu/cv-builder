@@ -48,6 +48,8 @@ export interface Skill {
     | "backend"
     | "cloud"
     | "devops"
+    | "security"
+    | "ai"
     | "database"
     | "testing"
     | "tool"

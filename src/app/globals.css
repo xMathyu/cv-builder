@@ -42,8 +42,10 @@ body {
   html {
     /* Las clases de Tailwind están dimensionadas para un viewport de
        escritorio; una A4 son ~794px. Bajar la raíz reescala de una vez
-       todo lo que usa rem (tipografía y espaciado). */
-    font-size: 9.5pt;
+       todo lo que usa rem (tipografía y espaciado). 9.2pt deja holgura
+       para que el CV en español (~12% más largo que el inglés) no
+       desborde a una hoja extra por dos líneas. */
+    font-size: 9.2pt;
   }
 
   html,
@@ -138,22 +140,17 @@ body {
     margin-bottom: 0.45rem !important;
   }
 
-  /* Las tarjetas de proyecto no se estiran a la altura de la más alta:
-     evita el hueco muerto dentro de la más corta */
-  #cv-preview .md\:grid-cols-2 {
-    align-items: start;
-  }
-
-  /* Los proyectos mantienen 2 columnas (el breakpoint `md` tampoco aplica) */
+  /* Los proyectos mantienen 2 columnas (el breakpoint `md` no aplica a
+     210mm) y no se estiran a la altura de la tarjeta más alta. */
   #cv-preview .md\:grid-cols-2 {
     grid-template-columns: 1fr 1fr !important;
+    align-items: start;
   }
 
   /* Cortes de página. Ojo: aplicar `break-inside: avoid` a `*` (o a las
      tarjetas de experiencia, que son altas) haría que una tarjeta que no
      cabe se empuje entera y deje media hoja en blanco. Sólo se protegen
      los bloques cortos; las tarjetas altas sí pueden partirse. */
-  #cv-preview .md\:grid-cols-2 > div,
   #cv-preview li {
     break-inside: avoid;
   }
