@@ -62,7 +62,15 @@ const CVPreview: React.FC = () => {
     <div
       id="cv-preview"
       className="max-w-5xl mx-auto bg-white shadow-2xl min-h-screen"
-      style={{ color: theme.colors.text }}
+      style={
+        {
+          color: theme.colors.text,
+          // Expuestos para que el CSS de impresión pueda repintar el
+          // degradado del sidebar en cada hoja (ver globals.css).
+          "--cv-primary": theme.colors.primary,
+          "--cv-secondary": theme.colors.secondary,
+        } as React.CSSProperties
+      }
     >
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
         {/* Left Sidebar */}

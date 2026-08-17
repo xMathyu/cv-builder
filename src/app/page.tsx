@@ -6,6 +6,7 @@ import { CVProvider } from "@/context/CVContext";
 import { UIProvider, useUI } from "@/context/UIContext";
 import CVPreview from "@/components/CVPreview";
 import FullscreenCVView from "@/components/FullscreenCVView";
+import ExportButton from "@/components/ExportButton";
 import { Edit, Eye, Palette, Maximize, Printer } from "lucide-react";
 
 export default function Home() {
@@ -25,7 +26,7 @@ function MainContent() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
+      <header className="no-print bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
@@ -59,13 +60,7 @@ function MainContent() {
                 >
                   <Maximize className="w-5 h-5" />
                 </button>
-                <button
-                  onClick={() => window.open("/print", "_blank")}
-                  className="px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors text-sm font-medium"
-                  title="Vista de Impresión Tabloid"
-                >
-                  📄 Imprimir Tabloid
-                </button>
+                <ExportButton />
               </div>
             </div>
           </div>
@@ -76,7 +71,7 @@ function MainContent() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
           {/* Sidebar for future editing tools */}
-          <aside className="xl:col-span-1">
+          <aside className="no-print xl:col-span-1">
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
               <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
                 <Eye className="w-5 h-5 mr-2 text-blue-600" />
@@ -135,14 +130,8 @@ function MainContent() {
                     className="w-full text-left p-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg transition-colors block"
                   >
                     <Printer className="w-4 h-4 inline mr-2" />
-                    Vista para Imprimir
+                    Vista previa A4
                   </Link>
-                  <button
-                    onClick={() => window.open("/print", "_blank")}
-                    className="w-full text-left p-2 text-sm text-green-600 hover:bg-green-50 rounded-lg transition-colors font-medium"
-                  >
-                    📄 Vista de Impresión Tabloid
-                  </button>
                 </div>
               </div>
             </div>
@@ -158,7 +147,7 @@ function MainContent() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-16">
+      <footer className="no-print bg-white border-t border-gray-200 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center">
             <p className="text-sm text-gray-600">

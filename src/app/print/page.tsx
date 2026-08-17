@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { CVProvider } from "@/context/CVContext";
 import { UIProvider, useUI } from "@/context/UIContext";
 import CVPreview from "@/components/CVPreview";
+import { usePDFExport } from "@/hooks/usePDFExport";
 import Link from "next/link";
-import { ArrowLeft, Printer } from "lucide-react";
+import { ArrowLeft, Download } from "lucide-react";
 
 export default function PrintPage() {
   return (
@@ -19,91 +20,7 @@ export default function PrintPage() {
 
 function PrintContent() {
   const { language, toggleLanguage } = useUI();
-
-  useEffect(() => {
-    // Añadir estilos específicos para impresión en Tabloid
-    const style = document.createElement("style");
-    style.textContent = `
-      @media print {
-        @page {
-          size: 11in 17in; /* Tamaño Tabloid */
-          margin: 0.3in;
-        }
-        
-        body {
-          -webkit-print-color-adjust: exact !important;
-          print-color-adjust: exact !important;
-          margin: 0 !important;
-          padding: 0 !important;
-        }
-        
-        /* Ocultar elementos no necesarios para impresión */
-        .no-print {
-          display: none !important;
-        }
-      }
-      
-      /* Eliminar márgenes y padding de la página de impresión */
-      body {
-        margin: 0 !important;
-        padding: 0 !important;
-      }
-      
-      .min-h-screen {
-        margin: 0 !important;
-        padding: 0 !important;
-      }
-      
-      /* Forzar layout de 2 columnas en la página de impresión */
-      #cv-preview {
-        max-width: none !important;
-        width: 100% !important;
-        margin: 0 !important;
-        box-shadow: none !important;
-        border-radius: 0 !important;
-      }
-      
-      #cv-preview .grid {
-        display: grid !important;
-        grid-template-columns: 1fr 2fr !important;
-        gap: 0 !important;
-      }
-      
-      /* Asegurar que el sidebar ocupe 1/3 y el contenido 2/3 */
-      #cv-preview .lg\\:col-span-1 {
-        grid-column: span 1 !important;
-      }
-      
-      #cv-preview .lg\\:col-span-2 {
-        grid-column: span 1 !important;
-      }
-      
-      /* Arreglar el layout de proyectos para que sean simétricos */
-      #cv-preview .grid.grid-cols-1.md\\:grid-cols-2 {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        gap: 1.5rem !important;
-        align-items: start !important;
-      }
-      
-      /* Hacer que todas las cards de proyectos tengan la misma altura */
-      #cv-preview .grid.grid-cols-1.md\\:grid-cols-2 > div {
-        height: 100% !important;
-        display: flex !important;
-        flex-direction: column !important;
-        min-height: 320px !important;
-      }
-    `;
-    document.head.appendChild(style);
-
-    return () => {
-      document.head.removeChild(style);
-    };
-  }, []);
-
-  const handlePrint = () => {
-    window.print();
-  };
+  const { exportToPDF } = usePDFExport();
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -120,7 +37,7 @@ function PrintContent() {
                 Volver al Editor
               </Link>
               <div className="text-sm text-gray-500">
-                Optimizado para papel Tabloid (11x17&quot;)
+                Optimizado para A4 (210 × 297 mm)
               </div>
             </div>
 
@@ -140,11 +57,11 @@ function PrintContent() {
               </button>
 
               <button
-                onClick={handlePrint}
+                onClick={exportToPDF}
                 className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
               >
-                <Printer className="w-4 h-4" />
-                <span>Imprimir (Ctrl+P)</span>
+                <Download className="w-4 h-4" />
+                <span>Descargar PDF (A4)</span>
               </button>
             </div>
           </div>
@@ -160,35 +77,28 @@ function PrintContent() {
       <div className="no-print max-w-4xl mx-auto px-4 py-8">
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
           <h2 className="text-lg font-semibold text-blue-900 mb-2">
-            Instrucciones para imprimir en Tabloid
+            Cómo guardar el CV en PDF
           </h2>
           <ol className="list-decimal list-inside space-y-2 text-blue-800">
             <li>
-              Presiona{" "}
-              <kbd className="bg-blue-100 px-2 py-1 rounded">Ctrl+P</kbd> o haz
-              clic en &quot;Imprimir&quot;
+              Haz clic en <strong>Descargar PDF (A4)</strong> o presiona{" "}
+              <kbd className="bg-blue-100 px-2 py-1 rounded">Ctrl+P</kbd>
             </li>
-            <li>En la configuración de impresión, selecciona:</li>
-            <ul className="list-disc list-inside ml-6 mt-1 space-y-1">
-              <li>
-                <strong>Tamaño de papel:</strong> Tabloid (11 x 17 pulgadas)
-              </li>
-              <li>
-                <strong>Orientación:</strong> Vertical (Portrait)
-              </li>
-              <li>
-                <strong>Márgenes:</strong> Mínimos
-              </li>
-              <li>
-                <strong>Gráficos de fondo:</strong> Activado (para mantener
-                colores)
-              </li>
-            </ul>
             <li>
-              Haz clic en &quot;Imprimir&quot; para generar el PDF o enviarlo a
-              la impresora
+              En <strong>Destino</strong>, elige{" "}
+              <strong>Guardar como PDF</strong>
+            </li>
+            <li>
+              Verifica que <strong>Gráficos de fondo</strong> esté activado, así
+              se conserva el degradado de la columna lateral
             </li>
           </ol>
+          <p className="text-sm text-blue-700 mt-3">
+            El tamaño A4, los márgenes y los cortes de página ya vienen
+            definidos en la hoja de estilos: no hace falta tocar nada más en el
+            diálogo. El texto sale seleccionable, que es lo que necesitan los
+            filtros ATS de reclutamiento.
+          </p>
         </div>
       </div>
     </div>

@@ -7,57 +7,43 @@ import { usePDFExport } from "@/hooks/usePDFExport";
 const ExportButton: React.FC = () => {
   const { exportToPDF } = usePDFExport();
   const [isExporting, setIsExporting] = useState(false);
-  const [message, setMessage] = useState<{
-    type: "success" | "error";
-    text: string;
-  } | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const handleExportPDF = async () => {
     setIsExporting(true);
-    setMessage(null);
+    setError(null);
 
     try {
       await exportToPDF();
-      setMessage({
-        type: "success",
-        text: "¡PDF exportado exitosamente! En el diálogo de impresión: 1) Selecciona 'Guardar como PDF', 2) Ve a 'Más configuraciones', 3) Desactiva 'Encabezados y pies de página'. El PDF usará un tamaño de página personalizado (11x14 pulgadas) para que todo quepa en una sola hoja.",
-      });
-    } catch (error) {
-      setMessage({
-        type: "error",
-        text: error instanceof Error ? error.message : "Error al exportar PDF",
-      });
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "No se pudo exportar el PDF",
+      );
+      setTimeout(() => setError(null), 5000);
     } finally {
       setIsExporting(false);
-      // Clear message after 5 seconds
-      setTimeout(() => setMessage(null), 5000);
     }
   };
 
   return (
-    <div className="export-controls">
+    <div className="export-controls no-print">
       <button
         onClick={handleExportPDF}
         disabled={isExporting}
         className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        title="Abre el diálogo de impresión ya configurado en A4; elige 'Guardar como PDF'"
       >
         {isExporting ? (
           <Loader2 className="w-4 h-4 animate-spin" />
         ) : (
           <Download className="w-4 h-4" />
         )}
-        {isExporting ? "Exportando..." : "Exportar PDF"}
+        {isExporting ? "Preparando..." : "Descargar PDF (A4)"}
       </button>
 
-      {message && (
-        <div
-          className={`mt-2 p-2 rounded text-sm ${
-            message.type === "success"
-              ? "bg-green-100 text-green-700 border border-green-300"
-              : "bg-red-100 text-red-700 border border-red-300"
-          }`}
-        >
-          {message.text}
+      {error && (
+        <div className="mt-2 p-2 rounded text-sm bg-red-100 text-red-700 border border-red-300">
+          {error}
         </div>
       )}
     </div>

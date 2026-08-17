@@ -18,27 +18,177 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Estilos básicos para impresión */
+/* ============================================================
+   Exportación a PDF en A4
+   ------------------------------------------------------------
+   Único lugar donde vive el layout de impresión, para que `/` y
+   `/print` exporten exactamente lo mismo. Se imprime por la vía
+   nativa del navegador ("Guardar como PDF"), que produce texto
+   vectorial y seleccionable — necesario para que los filtros ATS
+   de reclutamiento puedan leer el CV.
+   ============================================================ */
 @media print {
-  /* Configuración de página para Tabloid */
   @page {
-    size: 11in 17in;
-    margin: 0.3in;
+    size: A4 portrait;
+    margin: 0;
   }
 
-  /* Preservar colores en impresión */
-  body {
+  /* Conservar el degradado del sidebar y los colores de marca */
+  * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
-  /* Ocultar elementos no necesarios para impresión */
+  html {
+    /* Las clases de Tailwind están dimensionadas para un viewport de
+       escritorio; una A4 son ~794px. Bajar la raíz reescala de una vez
+       todo lo que usa rem (tipografía y espaciado). */
+    font-size: 9.5pt;
+  }
+
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+  }
+
+  /* Todo el chrome de la app (headers, instrucciones, botones) */
   .no-print {
     display: none !important;
   }
 
-  /* Evitar saltos de página en elementos importantes */
+  /* Neutraliza cualquier contenedor de la app que envuelva al CV (los
+     max-width, padding, grids y sombras de `/`, `/print` y la vista
+     fullscreen), que dejarían la hoja con marco y el CV descuadrado. */
+  body :has(#cv-preview) {
+    display: block !important;
+    max-width: none !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+
+  /* La hoja completa: sin centrado, sombra ni alto mínimo de pantalla */
+  #cv-preview {
+    max-width: none !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+
+  /* CLAVE: Tailwind sólo aplica las 2 columnas en el breakpoint `lg`
+     (1024px), que una A4 nunca alcanza. Sin esto el sidebar se apila
+     encima del contenido — la razón de que el PDF saliera descuadrado. */
+  #cv-preview > .grid {
+    display: grid !important;
+    grid-template-columns: 34% 66% !important;
+    gap: 0 !important;
+  }
+
+  /* El degradado lateral debe seguir en la hoja 2 y siguientes. Los
+     elementos `fixed` se repintan en cada página impresa, así que la
+     banda de color se dibuja aparte y el sidebar se vuelve transparente. */
+  #cv-preview::before {
+    content: "";
+    position: fixed;
+    inset: 0 66% 0 0;
+    background: linear-gradient(
+      to bottom,
+      var(--cv-primary, #1e3a8a),
+      var(--cv-secondary, #1e40af)
+    );
+  }
+
+  #cv-preview > .grid > div:first-child {
+    background: transparent !important;
+    position: relative;
+  }
+
+  /* Espaciado: los p-8/p-6 de pantalla son excesivos en 210mm. Se recorta
+     el ritmo vertical en vez del tamaño de letra, que ya está al límite
+     de lo legible en papel. */
+  #cv-preview .p-8 {
+    padding: 1.1rem !important;
+  }
+
+  #cv-preview .p-6 {
+    padding: 0.7rem !important;
+  }
+
+  #cv-preview .mb-8 {
+    margin-bottom: 0.75rem !important;
+  }
+
+  #cv-preview .mb-6 {
+    margin-bottom: 0.5rem !important;
+  }
+
+  #cv-preview .mb-4 {
+    margin-bottom: 0.45rem !important;
+  }
+
+  /* Las tarjetas de proyecto no se estiran a la altura de la más alta:
+     evita el hueco muerto dentro de la más corta */
+  #cv-preview .md\:grid-cols-2 {
+    align-items: start;
+  }
+
+  /* Los proyectos mantienen 2 columnas (el breakpoint `md` tampoco aplica) */
+  #cv-preview .md\:grid-cols-2 {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Cortes de página. Ojo: aplicar `break-inside: avoid` a `*` (o a las
+     tarjetas de experiencia, que son altas) haría que una tarjeta que no
+     cabe se empuje entera y deje media hoja en blanco. Sólo se protegen
+     los bloques cortos; las tarjetas altas sí pueden partirse. */
+  #cv-preview .md\:grid-cols-2 > div,
+  #cv-preview li {
+    break-inside: avoid;
+  }
+
+  /* Al partir una tarjeta de experiencia, su encabezado (logo, puesto,
+     empresa y fechas) no debe quedar solo al final de la hoja */
+  #cv-preview .bg-gray-50 > div:first-child {
+    break-inside: avoid;
+    break-after: avoid;
+  }
+
+  /* Mínimo de líneas a cada lado de un corte */
+  #cv-preview p,
+  #cv-preview ul {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Ni dejar un título huérfano al final de la hoja */
+  #cv-preview h2,
+  #cv-preview h3 {
+    break-inside: avoid;
+    break-after: avoid;
+  }
+
+  /* La foto de perfil, más contenida en papel */
+  #cv-preview .w-32 {
+    width: 6.5rem !important;
+  }
+
+  #cv-preview .h-32 {
+    height: 6.5rem !important;
+  }
+
   .avoid-break {
-    page-break-inside: avoid;
+    break-inside: avoid;
   }
 }

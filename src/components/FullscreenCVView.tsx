@@ -5,7 +5,6 @@ import { X } from "lucide-react";
 import { useUI } from "@/context/UIContext";
 import CVPreview from "./CVPreview";
 import ExportButton from "./ExportButton";
-import DirectExportButton from "./DirectExportButton";
 
 const FullscreenCVView: React.FC = () => {
   const { isFullscreen, toggleFullscreen } = useUI();
@@ -15,7 +14,7 @@ const FullscreenCVView: React.FC = () => {
   return (
     <div className="fixed inset-0 z-50 bg-gray-100">
       {/* Fullscreen Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-51">
+      <header className="no-print bg-white shadow-sm border-b border-gray-200 sticky top-0 z-51">
         <div className="max-w-full px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-12">
             <div className="flex items-center">
@@ -26,11 +25,7 @@ const FullscreenCVView: React.FC = () => {
             </div>
 
             <div className="flex items-center space-x-3">
-              {/* Export Buttons */}
-              <div className="flex items-center space-x-2">
-                <ExportButton />
-                <DirectExportButton />
-              </div>
+              <ExportButton />
 
               {/* Close Button */}
               <button
