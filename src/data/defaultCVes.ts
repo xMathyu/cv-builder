@@ -33,7 +33,7 @@ export const spanishCVData: CVData = {
   experiences: [
     {
       id: "exp-0",
-      position: "Experto en Ciencia de Datos / AI Tech Lead",
+      position: "AI Tech Lead",
       company: "Entel",
       location: "Híbrido",
       startDate: "2025-11",

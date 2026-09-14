@@ -33,7 +33,7 @@ export const defaultCVData: CVData = {
   experiences: [
     {
       id: "exp-0",
-      position: "Data Scientist Expert / AI Tech Lead",
+      position: "AI Tech Lead",
       company: "Entel",
       location: "Hybrid",
       startDate: "2025-11",
