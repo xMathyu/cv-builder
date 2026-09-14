@@ -124,20 +124,27 @@ body {
     padding: 1.1rem !important;
   }
 
+  /* Más aire lateral sólo en la columna principal: acorta la línea de ~90 a
+     ~80 caracteres, que es el rango cómodo de lectura. No cuesta vertical. */
+  #cv-preview > .grid > div:last-child {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+
   #cv-preview .p-6 {
-    padding: 0.7rem !important;
+    padding: 1rem !important;
   }
 
   #cv-preview .mb-8 {
-    margin-bottom: 0.75rem !important;
+    margin-bottom: 1.05rem !important;
   }
 
   #cv-preview .mb-6 {
-    margin-bottom: 0.5rem !important;
+    margin-bottom: 1.05rem !important;
   }
 
   #cv-preview .mb-4 {
-    margin-bottom: 0.45rem !important;
+    margin-bottom: 0.65rem !important;
   }
 
   /* Los proyectos mantienen 2 columnas (el breakpoint `md` no aplica a

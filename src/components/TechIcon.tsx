@@ -123,6 +123,8 @@ interface TechIconProps {
   className?: string;
   /** false para heredar el color del contenedor en vez del color de marca. */
   colored?: boolean;
+  /** true si el icono va sobre fondo oscuro: los logos sin contraste pasan a blanco. */
+  onDark?: boolean;
 }
 
 const techIconMap: Record<
@@ -418,14 +420,44 @@ const techColorMap: Record<string, string> = {
   TensorFlow: "#FF6F00",
 };
 
+/**
+ * Luminancia relativa (WCAG) de un hex. Sirve para saber si el color de marca
+ * tiene contraste suficiente sobre un fondo oscuro: los logos casi negros
+ * (Next.js, GitHub, OWASP, Vercel) desaparecen sobre el azul del sidebar.
+ */
+const luminance = (hex: string): number => {
+  const match = /^#([0-9a-f]{6})$/i.exec(hex);
+  if (!match) return 1;
+
+  const value = parseInt(match[1], 16);
+  const channels = [(value >> 16) & 255, (value >> 8) & 255, value & 255].map(
+    (raw) => {
+      const c = raw / 255;
+      return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+    },
+  );
+
+  return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+};
+
+// Por debajo de esto, el logo no se distingue del azul del sidebar.
+const DARK_BG_MIN_LUMINANCE = 0.25;
+
 const TechIcon: React.FC<TechIconProps> = ({
   technology,
   size = 24,
   className = "",
   colored = true,
+  onDark = false,
 }) => {
   const IconComponent = techIconMap[technology] || Code2;
-  const brand = colored ? techColorMap[technology] : undefined;
+  let brand = colored ? techColorMap[technology] : undefined;
+
+  // Sobre fondo oscuro se conserva el color de marca cuando se lee (naranjas,
+  // verdes, cianes) y se pasa a blanco cuando no (azules, morados, negros).
+  if (onDark && brand && luminance(brand) < DARK_BG_MIN_LUMINANCE) {
+    brand = "#ffffff";
+  }
 
   return (
     <IconComponent

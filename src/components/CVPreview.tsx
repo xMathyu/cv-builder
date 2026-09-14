@@ -129,7 +129,7 @@ const CVPreview: React.FC = () => {
 
               {/* Contact Info */}
               <div className="mb-8">
-                <h2 className="text-xl font-semibold mb-4 text-blue-200">
+                <h2 className="mb-3 border-b border-white/25 pb-1.5 text-lg font-semibold tracking-wide text-white">
                   Contact
                 </h2>
                 <div className="space-y-3">
@@ -204,7 +204,7 @@ const CVPreview: React.FC = () => {
           {/* Technical Skills */}
           {sections.showSkills && (
             <div className="mb-8">
-              <h2 className="text-xl font-semibold mb-4 text-blue-200">
+              <h2 className="mb-3 border-b border-white/25 pb-1.5 text-lg font-semibold tracking-wide text-white">
                 Technical Skills
               </h2>
               <div className="space-y-4">
@@ -215,7 +215,7 @@ const CVPreview: React.FC = () => {
 
                     return (
                       <div key={category}>
-                        <h3 className="font-medium text-blue-200 mb-2">
+                        <h3 className="mb-1.5 text-sm font-medium text-blue-100">
                           {
                             categoryLabels[
                               category as keyof typeof categoryLabels
@@ -227,14 +227,15 @@ const CVPreview: React.FC = () => {
                             return (
                               <span
                                 key={skill.id}
-                                // Fondo claro: los logos con color de marca no
-                                // se leen sobre el azul oscuro del sidebar.
-                                className="bg-white text-gray-800 px-2 py-1 rounded text-xs flex items-center"
+                                // Velo translúcido en vez de fondo blanco: el
+                                // chip pertenece al degradado y no lo corta.
+                                className="flex items-center gap-1.5 rounded-md bg-white/12 px-2 py-1 text-xs text-white ring-1 ring-white/25"
                               >
                                 <TechIcon
                                   technology={skill.name}
                                   size={12}
-                                  className="w-3 h-3 mr-1"
+                                  className="w-3 h-3"
+                                  onDark
                                 />
                                 {skill.name}
                               </span>
@@ -252,7 +253,7 @@ const CVPreview: React.FC = () => {
           {/* Languages */}
           {sections.showLanguages && (
             <div className="mb-8">
-              <h2 className="text-xl font-semibold mb-4 text-blue-200">
+              <h2 className="mb-3 border-b border-white/25 pb-1.5 text-lg font-semibold tracking-wide text-white">
                 Languages
               </h2>
               <div className="space-y-2">
@@ -271,7 +272,7 @@ const CVPreview: React.FC = () => {
           {/* Certifications */}
           {sections.showCertifications && (
             <div>
-              <h2 className="text-xl font-semibold mb-4 text-blue-200">
+              <h2 className="mb-3 border-b border-white/25 pb-1.5 text-lg font-semibold tracking-wide text-white">
                 Certifications
               </h2>
               <div className="space-y-2">
@@ -374,25 +375,17 @@ const CVPreview: React.FC = () => {
                       {/* Company Info */}
                       <div className="flex-grow">
                         <h3
-                          className="text-xl font-bold"
+                          className="text-xl font-bold leading-tight"
                           style={{ color: theme.colors.text }}
                         >
                           {experience.position}
                         </h3>
                         <p
-                          className="text-lg font-semibold"
+                          className="text-lg font-semibold leading-snug"
                           style={{ color: theme.colors.primary }}
                         >
                           {experience.company}
                         </p>
-                        {experience.description && (
-                          <p
-                            className="text-sm mt-1"
-                            style={{ color: theme.colors.muted }}
-                          >
-                            {experience.description}
-                          </p>
-                        )}
                       </div>
                     </div>
 
@@ -402,7 +395,7 @@ const CVPreview: React.FC = () => {
                       style={{ color: theme.colors.muted }}
                     >
                       <p
-                        className="font-semibold"
+                        className="font-semibold whitespace-nowrap"
                         style={{ color: theme.colors.primary }}
                       >
                         {experience.startDate} -{" "}
@@ -413,14 +406,27 @@ const CVPreview: React.FC = () => {
                       <p className="text-sm">{experience.location}</p>
                     </div>
                   </div>
+
+                  {/* La descripción va a ancho completo, fuera del bloque del
+                      logo: anidada allí arrancaba 64px a la derecha y dejaba
+                      dos márgenes izquierdos distintos con las viñetas. */}
+                  {experience.description && (
+                    <p
+                      className="mb-3 text-sm leading-relaxed"
+                      style={{ color: theme.colors.muted }}
+                    >
+                      {experience.description}
+                    </p>
+                  )}
+
                   <ul
-                    className="space-y-2"
+                    className="space-y-1.5 leading-relaxed"
                     style={{ color: theme.colors.muted }}
                   >
                     {experience.achievements.map((achievement, index) => (
                       <li key={index} className="flex items-start">
                         <div
-                          className="w-2 h-2 rounded-full mt-2 mr-3 flex-shrink-0"
+                          className="mt-[0.45rem] mr-2.5 h-1.5 w-1.5 shrink-0 rounded-full"
                           style={{ backgroundColor: theme.colors.primary }}
                         ></div>
                         <span
@@ -430,21 +436,21 @@ const CVPreview: React.FC = () => {
                     ))}
                   </ul>
                   {experience.technologies.length > 0 && (
-                    <div className="mt-3">
-                      <div className="flex flex-wrap gap-2">
+                    <div className="mt-3 border-t border-gray-200 pt-3">
+                      <div className="flex flex-wrap gap-1.5">
                         {experience.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className="px-2 py-1 rounded text-xs font-medium flex items-center"
+                            className="flex items-center gap-1.5 rounded-md border bg-white px-1.5 py-0.5 text-xs font-medium"
                             style={{
-                              backgroundColor: theme.colors.accent + "20",
                               color: theme.colors.primary,
+                              borderColor: theme.colors.accent + "40",
                             }}
                           >
                             <TechIcon
                               technology={tech}
                               size={12}
-                              className="w-3 h-3 mr-1"
+                              className="w-3 h-3"
                             />
                             {tech}
                           </span>
@@ -474,7 +480,7 @@ const CVPreview: React.FC = () => {
                 {projects.map((project) => (
                   <div
                     key={project.id}
-                    className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg border border-blue-200 flex flex-col"
+                    className="flex flex-col rounded-lg border border-blue-200 bg-blue-50 p-6"
                   >
                     {/* Project Header */}
                     <div className="flex items-center mb-3">

@@ -19,7 +19,7 @@ export const defaultCVData: CVData = {
   personalInfo: {
     id: "personal-1",
     fullName: "Mathyu Cardozo",
-    title: "Tech Lead / Sr Full Stack Developer",
+    title: "AI Lead / Solutions Architect",
     email: "xmathyu@gmail.com",
     phone: "+51 924-283-802",
     location: "Peru",
@@ -764,13 +764,7 @@ export const defaultCVData: CVData = {
       name: "Asociación Fa Meng Chuen - Martial Arts School",
       description:
         "Site for a Chinese martial arts school in Miraflores, Lima, presenting its Tai Chi, Sanda and Taolu programs and turning visits into first-class bookings over WhatsApp. Built with Next.js on Vercel.",
-      technologies: [
-        "Next.js",
-        "React",
-        "SEO",
-        "Vercel",
-        "Responsive Design",
-      ],
+      technologies: ["Next.js", "React", "SEO", "Vercel", "Responsive Design"],
       startDate: "2025-03",
       endDate: "",
       url: "https://famengchuen.com/",
